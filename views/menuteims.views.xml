@@ -1,0 +1,5 @@
+<odoo>
+    <data>
+        <menuitem id="sirkulasi_root" name="Sirkulasi" sequence="0"/>
+    </data>
+</odoo>
