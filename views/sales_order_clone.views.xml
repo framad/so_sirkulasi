@@ -330,7 +330,7 @@
                                 <field
                                     name="price_unit"
                                     readonly="qty_invoiced &gt; 0"/>
-                                    
+
                                 <button string="Proses Sinkronisasi Data" type="object" name="rekap_sale_order" class="oe_highlight"/>
                                 
                                 <field
@@ -545,7 +545,7 @@
     </record>
 
     <record id="view_sale_order_inherit_action" model="ir.actions.act_window">
-            <field name="name">Orders Clone</field>
+            <field name="name">Sirkulasi</field>
             <field name="res_model">sale.order</field>
             <field name="view_mode">tree,form,graph,pivot</field>
 
@@ -553,6 +553,6 @@
 
         </record>
 
-        <menuitem id="order_clone" name="Orders Clone" sequence='15' parent="sale.sale_order_menu" action="view_sale_order_inherit_action"/>
+        <menuitem id="order_clone" name="Sirkulasi" sequence='15' parent="sale.sale_order_menu" action="view_sale_order_inherit_action"/>
     
 </odoo>
