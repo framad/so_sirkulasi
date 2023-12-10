@@ -16,13 +16,13 @@
     'version': '0.1',
 
 		# Dependency
-    'depends': ['base','sale'],
+    'depends': ['base', 'sale_management', 'web'],
 
 		# Include ALL XML Code in Here be mindful of order
     'data': [
         'security/ir.model.access.csv',
         'views/menuteims.views.xml',
-        'views/sales_order_clone.views.xml',
+        'views/views.xml',
     ],
 
     'installable': True,

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="inside">
+                    <field name="sirkulasi_ok" invisible="0" />
+                </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Rekap SOL" invisible="sirkulasi_ok == False">
+                    <field name="rekap_so_ids">
+                        <tree editable="bottom" delete='1'>
+                            <field name="id_produk" string="ID Product"/>
+                            <field name="product" string="Nama Product"/>
+                            <field name="quantity" string="Data Quantity"/>
+                            <field name="transaction_date" string="Tanggal"/>
+                            <field name="total_product" string="Total"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <button string="Proses Sinkronisasi Data" type="object" name="rekap_sale_order" class="oe_highlight" invisible="parent.sirkulasi_ok == False"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sirkulasi_sale_action" model="ir.actions.act_window">
+            <field name="name">Sirkulasi</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+            <field name="domain">[('sirkulasi_ok','=',True)]</field>
+            <field name="context">{'default_sirkulasi_ok': True, 'adv_ok': False}</field>
+        </record>
+
+    <menuitem id="sirkulasi_sale_menu" name="Sirkulasi" action="sirkulasi_sale_action" parent="sale.sale_order_menu"
+            sequence="99" />
+    
+    </data>
+    
+</odoo>
