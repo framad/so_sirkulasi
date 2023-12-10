@@ -331,7 +331,7 @@
                                     name="price_unit"
                                     readonly="qty_invoiced &gt; 0"/>
 
-                                <button string="Proses Sinkronisasi Data" type="object" name="rekap_sale_order" class="oe_highlight"/>
+                                <button string="Proses Sinkronisasi Data" type="object" name="rekap_sale_order" class="oe_highlight" invisible="invoice_status != 'to invoice'"/>
                                 
                                 <field
                                     name="tax_id"
@@ -522,7 +522,7 @@
                             <field name="signature" widget="image"/>
                         </group>
                     </page>
-                    <page string="Rekap SOL" name="rekap_sol">
+                    <page string="Rekap SOL" name="rekap_sol" invisible="invoice_status != 'to invoice'">
                             <field name="rekap_so_ids">
                                 <tree editable="bottom" delete='1'>
                                     <field name="id_produk" string="ID Product"/>
