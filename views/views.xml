@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form/sheet" position="inside">
-                    <field name="sirkulasi_ok" invisible="0" />
+                    <field name="sirkulasi_ok" invisible="1" />
                 </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="attributes">
                     <attribute name="readonly">parent.sirkulasi_ok == True</attribute>
