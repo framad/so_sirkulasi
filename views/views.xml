@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
+    <record id="product_template_only_form_view_inherit_so_sirkulasi" model="ir.ui.view">
+            <field name="name">product.template.view.form.so.sirkulasi.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales']" position="inside">
+                    <group string="Sirkulasi">
+                        <field name="sirkulasi_ok" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
         <record id="view_sale_order_form_inherit" model="ir.ui.view">
         <field name="name">sale.order.form.inherit</field>
         <field name="model">sale.order</field>
@@ -8,6 +22,9 @@
         <field name="arch" type="xml">
             <xpath expr="//form/sheet" position="inside">
                     <field name="sirkulasi_ok" invisible="0" />
+                </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="attributes">
+                    <attribute name="readonly">parent.sirkulasi_ok == True</attribute>
                 </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Rekap SOL" invisible="sirkulasi_ok == False">
@@ -22,6 +39,9 @@
                     </field>
                 </page>
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="before" >
+                    <field name="product_template_id" string="Sirkulasi Type" column_invisible="parent.sirkulasi_ok == False" readonly="not product_updatable" required="not display_type" options="{'no_open': True}" context="{'partner_id': parent.partner_id,'quantity': product_uom_qty,'pricelist': parent.pricelist_id,'uom':product_uom,'company_id': parent.company_id,'default_list_price': price_unit,'default_description_sale': name}" domain="[('sirkulasi_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]" widget="sol_product_many2one" placeholder="Type to find a product..."/>
+                </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
                 <button string="Proses Sinkronisasi Data" type="object" name="rekap_sale_order" class="oe_highlight" invisible="parent.sirkulasi_ok == False"/>
             </xpath>
