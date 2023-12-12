@@ -42,6 +42,12 @@
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="before" >
                     <field name="product_template_id" string="Sirkulasi Type" column_invisible="parent.sirkulasi_ok == False" readonly="not product_updatable" required="not display_type" options="{'no_open': True}" context="{'partner_id': parent.partner_id,'quantity': product_uom_qty,'pricelist': parent.pricelist_id,'uom':product_uom,'company_id': parent.company_id,'default_list_price': price_unit,'default_description_sale': name}" domain="[('sirkulasi_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]" widget="sol_product_many2one" placeholder="Type to find a product..."/>
                 </xpath>
+            <!-- <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="after" >
+                    <field name="write_date" string="Tanggal" readonly='0' force_save='1'/>
+                </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="after" >
+                    <field name="write_date_date" string="Tanggal fix" readonly='0' force_save='1'/>
+                </xpath> -->
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
                 <button string="Proses Sinkronisasi Data" type="object" name="rekap_sale_order" class="oe_highlight" invisible="parent.sirkulasi_ok == False"/>
             </xpath>

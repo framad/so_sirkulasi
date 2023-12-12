@@ -14,6 +14,7 @@ class RekapSo(models.Model):
     id_produk = fields.Many2one('product.template')
     total_product = fields.Float()
     quantity = fields.Float()
-    transaction_date = fields.Datetime()
+    transaction_date = fields.Date()
     rekap_so_id = fields.Many2one(comodel_name="sale.order")
+    sale = fields.Many2one(comodel_name="sale.order")
     total_rekap_id = fields.Many2one(comodel_name="sale.order")
